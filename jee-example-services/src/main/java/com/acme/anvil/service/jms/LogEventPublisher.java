@@ -17,7 +17,7 @@ import org.apache.log4j.Logger;
 
 import weblogic.transaction.ClientTransactionManager;
 import weblogic.transaction.TransactionHelper;
-import weblogic.transaction.Transaction;
+import weblogic.transaction.Transaction;	
 import com.acme.anvil.vo.LogEvent;
 
 public class LogEventPublisher {

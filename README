@@ -18,7 +18,6 @@ Technologies demonstrated:
 
 Technologies targeted:
 * weblogic.application.ApplicationContext
-* weblogic.logging.LoggerNotAvailableException
 * weblogic.management.MBeanHome
 * weblogic.security.acl.UserInfo
 * weblogic.servlet.security.ServletAuthentication
