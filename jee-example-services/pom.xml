@@ -24,5 +24,11 @@
 			<version>3.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javaee</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>5</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
