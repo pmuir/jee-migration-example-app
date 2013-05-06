@@ -1,7 +1,10 @@
-<!DOCTYPE ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
-<ejb-jar>
-	<enterprise-beans>
-	
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar
+  xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd"
+  version="2.1">
+	<enterprise-beans>	
 		<session>
 			<ejb-name>ItemLookupBean</ejb-name>
 			<home>com.acme.anvil.service.ItemLookupHome</home>
@@ -37,13 +40,25 @@
 					<role-name>acme_user</role-name>
 				</run-as>
 			</security-identity>
-			<resource-ref>
-				<res-ref-name>jdbc/ExampleDB</res-ref-name>
-				<res-type>javax.sql.DataSource</res-type>
-				<res-auth>Container</res-auth>
-				<res-sharing-scope>Shareable</res-sharing-scope>
-			</resource-ref>
 		</session>
+
+		<message-driven>
+			<ejb-name>LogEventSubscriber</ejb-name>
+			<ejb-class>com.acme.anvil.service.jms.LogEventSubscriber</ejb-class>
+			<transaction-type>Container</transaction-type>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>destinationType</activation-config-property-name>
+					<activation-config-property-value>javax.jms.Topic</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+			<security-identity>
+				<run-as>
+					<role-name>acme_user</role-name>
+				</run-as>
+			</security-identity>
+		</message-driven>
+    
 	</enterprise-beans>
 
 	<assembly-descriptor>
