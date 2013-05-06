@@ -1,2 +1,26 @@
 Provides an example application to be profiled by Windup.
 
+Technologies demonstrated: 
+* weblogic.common.T3ServicesDef
+* weblogic.common.T3StartupDef
+* weblogic.i18n.logging.NonCatalogLogger
+* weblogic.jndi.Environment
+* weblogic.application.ApplicationLifecycleEvent
+* weblogic.application.ApplicationLifecycleListener
+
+Technologies targeted:
+* weblogic.application.ApplicationContext
+* weblogic.ejb.GenericMessageDrivenBean
+* weblogic.ejb.GenericSessionBean
+* weblogic.logging.LoggerNotAvailableException
+* weblogic.management.MBeanHome
+* weblogic.security.acl.UserInfo
+* weblogic.servlet.security.ServletAuthentication
+* weblogic.transaction.ClientTransactionManager
+* weblogic.transaction.ClientTxHelper
+* weblogic.transaction.InterposedTransactionManager
+* weblogic.transaction.Transaction
+* weblogic.transaction.TransactionManager
+* weblogic.transaction.TxHelper
+* weblogic.transaction.UserTransaction
+* weblogic.transaction.XAResource
