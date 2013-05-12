@@ -18,7 +18,7 @@ import weblogic.ejbgen.MessageDriven;
 
 @MessageDriven(
    ejbName = "LogEventSubscriber",
-   destinationJndiName = "jms/LogEventTopic",
+   destinationJndiName = "jms/LogEventQueue",
    destinationType = "javax.jms.Topic",
    runAsPrincipalName = "anvil_user",
    runAs = "anvil_user"

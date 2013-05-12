@@ -28,7 +28,7 @@
 	<weblogic-enterprise-bean>
 		<ejb-name>LogEventSubscriber</ejb-name>
 		<message-driven-descriptor>
-			<destination-jndi-name>jms/LogEventTopic</destination-jndi-name>
+			<destination-jndi-name>jms/LogEventQueue</destination-jndi-name>
 		</message-driven-descriptor>
 		<run-as-principal-name>admin_user</run-as-principal-name>
 	</weblogic-enterprise-bean>

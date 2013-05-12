@@ -1,9 +1,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.windup.example</groupId>
-	<artifactId>jee-example-app</artifactId>
+	<artifactId>jee-example</artifactId>
 	<version>1.0.0</version>
-	<name>JEE Example App</name>
+	<name>JEE Example</name>
 	<dependencies>
 		<dependency>
 			<groupId>org.migration.support</groupId>
@@ -26,5 +26,7 @@
 	<modules>
 		<module>jee-example-services</module>
 		<module>jee-example-web</module>
+		<module>jee-example-app</module>
 	</modules>
+	<description>Example EAR, WAR, EJB JAR that use Weblogic vendor specific APIs.  </description>
 </project>

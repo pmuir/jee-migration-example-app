@@ -25,3 +25,4 @@ Technologies targeted:
 * weblogic.transaction.InterposedTransactionManager
 * weblogic.transaction.UserTransaction
 * weblogic.transaction.XAResource
+* weblogic.servlet.security.AuthFilter

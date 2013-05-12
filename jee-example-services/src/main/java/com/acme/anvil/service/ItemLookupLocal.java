@@ -5,5 +5,5 @@ import javax.ejb.EJBLocalObject;
 import com.acme.anvil.vo.Item;
 
 public interface ItemLookupLocal extends EJBLocalObject {
-	public Item lookupItem();
+	public Item lookupItem(long id);
 }
