@@ -9,6 +9,7 @@
 			<groupId>org.migration.support</groupId>
 			<artifactId>migration-support</artifactId>
 			<version>1.0.0</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -23,6 +24,20 @@
 		</dependency>
 	</dependencies>
 	<packaging>pom</packaging>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.jboss.windup</groupId>
+				<artifactId>windup-maven-plugin</artifactId>
+				<configuration>
+					<packages>
+						<package>com.acme</package>
+					</packages>
+					<source>true</source>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 	<modules>
 		<module>jee-example-services</module>
 		<module>jee-example-web</module>
