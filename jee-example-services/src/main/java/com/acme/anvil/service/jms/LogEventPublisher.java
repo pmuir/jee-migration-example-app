@@ -34,7 +34,7 @@ public class LogEventPublisher {
 		ClientTransactionManager ctm = TransactionHelper.getTransactionHelper().getTransactionManager();
 		Transaction saveTx = null;
 		try {
-			saveTx = ctm.forceSuspend();
+			saveTx = (Transaction) ctm.forceSuspend(); // Forced
 
 			try {
 				Context ic = getContext();

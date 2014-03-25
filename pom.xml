@@ -15,6 +15,10 @@
 		<module>jee-example-app</module>
 	</modules>
 
+    <properties>
+        <weblogic.version>10.3</weblogic.version>
+    </properties>
+
     <build>
 		<plugins>
 			<plugin>
@@ -42,7 +46,7 @@
 		</dependency>
         -->
         
-		<dependency>
+        <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.6</version>
