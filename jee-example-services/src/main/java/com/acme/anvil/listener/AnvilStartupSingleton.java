@@ -70,4 +70,5 @@ public class AnvilStartupSingleton {
 			LOG.error("Exception while unregistering MBean["+MBEAN_NAME+"]");
 		}
 	}
-}
+    
+}// class
