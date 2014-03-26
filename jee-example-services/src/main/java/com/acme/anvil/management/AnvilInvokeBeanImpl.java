@@ -4,10 +4,8 @@ import javax.management.NotCompliantMBeanException;
 import javax.management.StandardMBean;
 
 /**
- * 
  * Provides a standard JMX bean.
  * @author bradsdavis
- *
  */
 public class AnvilInvokeBeanImpl extends StandardMBean implements AnvilInvokeBean {
 
@@ -17,14 +15,14 @@ public class AnvilInvokeBeanImpl extends StandardMBean implements AnvilInvokeBea
 
 	private int invoked = 0;
 	
-	/* (non-Javadoc)
+	/*
 	 * @see com.acme.anvil.management.AnvilInvokeBean#addInvoked()
 	 */
 	public void addInvoked() {
 		invoked++;
 	}
 	
-	/* (non-Javadoc)
+	/*
 	 * @see com.acme.anvil.management.AnvilInvokeBean#getInvoked()
 	 */
 	public int getInvoked() {

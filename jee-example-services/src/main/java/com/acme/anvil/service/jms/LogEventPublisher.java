@@ -1,7 +1,7 @@
 package com.acme.anvil.service.jms;
 
+import com.acme.anvil.vo.LogEvent;
 import java.util.Properties;
-
 import javax.jms.JMSException;
 import javax.jms.ObjectMessage;
 import javax.jms.Queue;
@@ -14,14 +14,10 @@ import javax.jms.TopicSession;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
+import javax.transaction.Transaction;
 import org.apache.log4j.Logger;
-
 import weblogic.transaction.ClientTransactionManager;
-import weblogic.transaction.Transaction;
 import weblogic.transaction.TransactionHelper;
-
-import com.acme.anvil.vo.LogEvent;
 
 public class LogEventPublisher {
 
@@ -34,7 +30,7 @@ public class LogEventPublisher {
 		ClientTransactionManager ctm = TransactionHelper.getTransactionHelper().getTransactionManager();
 		Transaction saveTx = null;
 		try {
-			saveTx = (Transaction) ctm.forceSuspend(); // Forced
+			saveTx = ctm.forceSuspend(); // Forced
 
 			try {
 				Context ic = getContext();

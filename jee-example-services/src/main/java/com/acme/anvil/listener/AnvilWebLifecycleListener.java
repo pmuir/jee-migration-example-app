@@ -1,77 +1,57 @@
 package com.acme.anvil.listener;
 
-import java.util.Properties;
-
+import com.acme.anvil.management.AnvilInvokeBeanImpl;
+import java.lang.management.ManagementFactory;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.annotation.Resource;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
-import javax.naming.Context;
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
-
 import org.apache.log4j.Logger;
 
-import weblogic.application.ApplicationLifecycleEvent;
-import weblogic.application.ApplicationLifecycleListener;
-
-import com.acme.anvil.management.AnvilInvokeBeanImpl;
-
 /**
- * See more information on registering MBeans in Weblogic at:
- * 	http://docs.oracle.com/cd/E14571_01/web.1111/e13729/designapp.htm
- * 
- * This serves as an example on how to get Application Context information and register MBeans.
- * 
- * @author bradsdavis
- *
+ * Originally, this was a subclass of ApplicationLifecycleListener.
+ * There's no equivalent to preStart() and preStop().
+ * See also:
+ *   https://docs.jboss.org/author/display/AS72/How+do+I+migrate+my+application+from+WebLogic+to+AS+7#HowdoImigratemyapplicationfromWebLogictoAS7-ReplaceWebLogicApplicationLifecycleListenerCode .
+ *   http://blog.eisele.net/2010/12/seven-ways-to-get-things-started-java.html
+ *   https://access.redhat.com/site/solutions/199863
  */
-public class AnvilWebLifecycleListener extends ApplicationLifecycleListener {
+@javax.ejb.Singleton
+@javax.ejb.Startup
+public class AnvilWebLifecycleListener {
 
 	private static Logger LOG = Logger.getLogger(AnvilWebLifecycleListener.class);
-	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBeanApplicationLifecycleListener";
-	
-	@Override
-	public void preStart(ApplicationLifecycleEvent evt) {
-		String appName = evt.getApplicationContext().getApplicationName();
-		LOG.info("Before Start Application["+appName+"]");
-	}
-	
-	@Override
-	public void postStart(ApplicationLifecycleEvent evt) {
-		String appName = evt.getApplicationContext().getApplicationName();
+	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBean";
+    
+    @Resource(lookup = "java:app/AppName") private String appName;
+    
+    
+    @PostConstruct
+    void postStart() {
 		LOG.info("After Start Application["+appName+"]");
 		registerMBean();
-	}
-	
-	@Override
-	public void postStop(ApplicationLifecycleEvent evt) {
-		String appName = evt.getApplicationContext().getApplicationName();
+    }
+ 
+    @PreDestroy
+    void postStop() {
 		LOG.info("Before Stop Application["+appName+"]");
 		unregisterMBean();
-	}
+    }    
 	
-	@Override
-	public void preStop(ApplicationLifecycleEvent evt) {
-		String appName = evt.getApplicationContext().getApplicationName();
-		LOG.info("After Stop Application["+appName+"]");
-	}
-	
+    
 	private MBeanServer getMBeanServer() throws NamingException {
-		Properties environment = new Properties();
-		environment.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
-		environment.put(Context.PROVIDER_URL, "t3://localhost:7001");
-		Context context = new InitialContext(environment);
-		
-		//get reference to the MBean Server...
-		MBeanServer server = (MBeanServer) context.lookup("java:comp/jmx/runtime");
+		//MBeanServer server = (MBeanServer) new InitialContext().lookup("java:comp/jmx/runtime");
+        MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 		return server;
 	}
 	
 	private void registerMBean() {
 		LOG.info("Registering MBeans.");
 		
-		MBeanServer server;
 		try {
-			server = getMBeanServer();
+			MBeanServer server = getMBeanServer();
 			server.registerMBean(new AnvilInvokeBeanImpl(), new ObjectName(MBEAN_NAME));
 			LOG.info("Registered MBean["+MBEAN_NAME+"]");
 		} catch (Exception e) {
@@ -82,9 +62,8 @@ public class AnvilWebLifecycleListener extends ApplicationLifecycleListener {
 	private void unregisterMBean() {
 		LOG.info("Unregistering MBeans.");
 		
-		MBeanServer server;
 		try {
-			server = getMBeanServer();
+			MBeanServer server = getMBeanServer();
 			server.unregisterMBean(new ObjectName(MBEAN_NAME));
 			LOG.info("Unregistered MBean["+MBEAN_NAME+"]");
 		} catch (Exception e) {
