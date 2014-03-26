@@ -58,13 +58,16 @@ public class AnvilWebListener implements ServletContextListener {
         int port = 9990;  // management-web port
         String url = System.getProperty("jmx.service.url","service:jmx:http-remoting-jmx://" + host + ":" + port);
         JMXServiceURL serviceURL = new JMXServiceURL(url);
-        //  Provide credentials required by server for user authentication
+
+        // Provide credentials required by server for user authentication
+        // See http://docs.oracle.com/cd/E19159-01/819-7758/gchjy/index.html
         Map env = new HashMap();
         env.put( JMXConnector.CREDENTIALS, new String[] {"fred", "seafood"} );
+        
         JMXConnector jmxConnector = JMXConnectorFactory.connect(serviceURL, env);
         MBeanServerConnection conn = jmxConnector.getMBeanServerConnection();
  
-        //Invoke on the WildFly 8 MBean server
+        // Invoke on the WildFly 8 MBean server.
         //int count = conn.getMBeanCount();
         
         return conn;
