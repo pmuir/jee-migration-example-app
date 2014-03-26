@@ -13,19 +13,19 @@ import javax.servlet.annotation.WebListener;
  */
 //@WebServlet(loadOnStartup = 1)
 @WebListener
-public class AnvilWebWebListener implements ServletContextListener {
+public class AnvilWebListener implements ServletContextListener {
 
 	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBeanT3StartupDef"; 
 	private NonCatalogLogger log;
 	
-	public AnvilWebWebListener() {
+	public AnvilWebListener() {
 		// Yes, this should be static final, but just for demo sake...
 		log = new NonCatalogLogger("AnvilWebStartupListener");
 	}
 
     
     public void contextInitialized( ServletContextEvent sce ) {
-		log.info("Initialized context, calling listener: "+ AnvilWebWebListener.class.getSimpleName() +" with properties: ");
+		log.info("Initialized context, calling listener: "+ AnvilWebListener.class.getSimpleName() +" with properties: ");
         
 		String name;
         Enumeration<String> names = sce.getServletContext().getAttributeNames();

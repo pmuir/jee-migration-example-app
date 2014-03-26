@@ -20,9 +20,9 @@ import org.apache.log4j.Logger;
  */
 @javax.ejb.Singleton
 @javax.ejb.Startup
-public class AnvilWebLifecycleListener {
+public class AnvilStartupSingleton {
 
-	private static Logger LOG = Logger.getLogger(AnvilWebLifecycleListener.class);
+	private static Logger LOG = Logger.getLogger(AnvilStartupSingleton.class);
 	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBean";
     
     @Resource(lookup = "java:app/AppName") private String appName;
