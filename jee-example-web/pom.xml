@@ -33,6 +33,15 @@
             <artifactId>commons-lang</artifactId>
             <version>2.5</version>
         </dependency>
+        
+        <!-- JBoss Logging -->
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.1.4.GA</version>
+            <scope>provided</scope>
+        </dependency>
+        
     </dependencies>
 
 </project>

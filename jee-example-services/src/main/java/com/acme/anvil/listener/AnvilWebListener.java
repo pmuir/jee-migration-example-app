@@ -13,25 +13,23 @@ import javax.naming.NamingException;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
-import weblogic.i18n.logging.NonCatalogLogger;
+
+import org.jboss.logging.Logger;
 
 
 /***
  * Prior to Weblogic 7, the T3StartupDef was a way of implementing startup listeners.
  *  See: http://docs.oracle.com/cd/E13222_01/wls/docs100/javadocs/weblogic/common/T3StartupDef.html
  *  See: http://docs.oracle.com/cd/E13222_01/wls/docs81/config_xml/StartupClass.html
+ *  See: https://docs.jboss.org/author/display/WFLY8/Developer+Guide#DeveloperGuide-ModifycodetousetheNewJBossLoggingFramework
  */
 //@WebServlet(loadOnStartup = 1)
 @WebListener
 public class AnvilWebListener implements ServletContextListener {
 
 	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBeanT3StartupDef"; 
-	private NonCatalogLogger log;
-	
-	public AnvilWebListener() {
-		// Yes, this should be static final, but just for demo sake...
-		log = new NonCatalogLogger("AnvilWebStartupListener");
-	}
+    
+    private static final Logger log = Logger.getLogger(AnvilWebListener.class);
 
     
     @Override public void contextInitialized( ServletContextEvent sce ) {
