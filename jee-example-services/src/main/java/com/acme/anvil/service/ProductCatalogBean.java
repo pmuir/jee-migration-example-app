@@ -1,16 +1,14 @@
 package com.acme.anvil.service;
 
 import java.rmi.RemoteException;
-
 import javax.ejb.EJBException;
 import javax.ejb.SessionBean;
 import javax.ejb.SessionContext;
-
-import weblogic.i18n.logging.NonCatalogLogger;
+import org.apache.log4j.Logger;
 
 public class ProductCatalogBean implements SessionBean {
 
-	private static final NonCatalogLogger LOG = new NonCatalogLogger("ProductCatalogBean");
+	private static final Logger LOG = Logger.getLogger(ProductCatalogBean.class);
 	
 	private SessionContext sessionContext;
 	
