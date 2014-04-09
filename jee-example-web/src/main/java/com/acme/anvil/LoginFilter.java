@@ -30,7 +30,7 @@ public class LoginFilter implements Filter {
 		HttpServletResponse response = (HttpServletResponse)resp;
 		
 	    HttpSession session = request.getSession();
-	    //...
+	    log.info("Login Filter.");
 	}
 
 	public void init(FilterConfig config) throws ServletException {

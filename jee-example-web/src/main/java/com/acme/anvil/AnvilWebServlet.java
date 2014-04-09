@@ -31,9 +31,17 @@ public class AnvilWebServlet extends HttpServlet {
 			PrintWriter out = resp.getWriter();
 			out.println("<html>");
 			out.println("<body>");
-			out.println("<h1>Hello Servlet Get</h1>");
+			out.println("<h1>ID: "+id+"</h1>");
 			out.println("</body>");
 			out.println("</html>");	
+		}
+		else {
+			PrintWriter out = resp.getWriter();
+			out.println("<html>");
+			out.println("<body>");
+			out.println("<h1>No ID Provided.</h1>");
+			out.println("</body>");
+			out.println("</html>");
 		}
 	}
 }

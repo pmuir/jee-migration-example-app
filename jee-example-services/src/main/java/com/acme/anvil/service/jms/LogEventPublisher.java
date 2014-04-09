@@ -3,11 +3,11 @@ package com.acme.anvil.service.jms;
 import javax.annotation.Resource;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
 import javax.jms.ConnectionFactory;
+import javax.jms.Destination;
 import javax.jms.JMSException;
+import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
-import javax.jms.Queue;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueSender;
@@ -20,7 +20,6 @@ import javax.transaction.InvalidTransactionException;
 import javax.transaction.SystemException;
 import javax.transaction.Transaction;
 import javax.transaction.TransactionManager;
-import javax.transaction.UserTransaction;
 
 import org.apache.log4j.Logger;
 
@@ -31,7 +30,7 @@ import com.acme.anvil.vo.LogEvent;
 public class LogEventPublisher {
 	private static final Logger LOG = Logger.getLogger(LogEventPublisher.class);
 	
-	private static final String QUEUE_JNDI_NAME = "java:jboss/jms/topic/LogEventTopic";
+	private static final String TOPIC_JNDI_NAME = "java:jboss/jms/topic/LogEventTopic";
 	private static final String QUEUE_FACTORY_JNDI_NAME = "java:/JmsXA";
 	private static final String TX_MANAGER = "java:jboss/TransactionManager";
 	
@@ -41,7 +40,7 @@ public class LogEventPublisher {
 	@Resource(mappedName = QUEUE_FACTORY_JNDI_NAME) 
     private ConnectionFactory factory;
     
-    @Resource(mappedName = QUEUE_JNDI_NAME)
+    @Resource(mappedName = TOPIC_JNDI_NAME)
     private Topic logEventTopic;    
 
 	public void publishLogEvent(LogEvent log) throws InvalidTransactionException, IllegalStateException, SystemException {
@@ -55,11 +54,11 @@ public class LogEventPublisher {
 			try {
 				Context ic = getContext();
 				QueueSession session = getQueueSession(ic);
-				Queue queue = getQueue(ic);
-				QueueSender sender = session.createSender(queue);
+				Destination queue = getDestination(ic);
+				MessageProducer producer = session.createProducer(queue);
 				ObjectMessage logMsg = session.createObjectMessage(log);
 
-				sender.send(logMsg);
+				producer.send(logMsg);
 			} catch (JMSException e) {
 				LOG.error("Exception sending message.", e);
 			} catch (NamingException e) {
@@ -79,8 +78,8 @@ public class LogEventPublisher {
 	}
 
 	
-	private static Queue getQueue(Context context) throws NamingException {
-		return (Queue) context.lookup(QUEUE_JNDI_NAME);
+	private static Destination getDestination(Context context) throws NamingException {
+		return (Destination) context.lookup(TOPIC_JNDI_NAME);
 	}
 
 	private static QueueSession getQueueSession(Context context) throws JMSException, NamingException {

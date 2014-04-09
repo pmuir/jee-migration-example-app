@@ -38,16 +38,20 @@ public class AuthenticateFilter implements Filter {
             ((HttpServletRequest)req).logout();
 		}
 		else if(session != null) {
+			log.info("Session isn't null.");
 			Date fiveMinutesAgo = DateUtils.addMinutes(new Date(), -5);
 			// Check that the time the session was last accessed was after 5 minutes ago.
 			Date timeLastAccessed = new Date(session.getLastAccessedTime());
 			
 			if(timeLastAccessed.before(fiveMinutesAgo)) {
+				log.info("5 minutes has passed.");
 				session.invalidate();
 				// Make the user log back in.
 				((HttpServletRequest)req).logout();
 			}
 		}
+		
+		chain.doFilter(req, resp);
 		
 	}
 

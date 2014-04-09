@@ -17,7 +17,7 @@ import com.acme.anvil.service.jms.LogEventPublisher;
 import com.acme.anvil.vo.Item;
 import com.acme.anvil.vo.LogEvent;
 
-@RunAs(value="acme_user")
+//@RunAs(value="acme_user")
 @Stateless
 @LocalBean
 @TransactionTimeout(unit=TimeUnit.SECONDS, value=180)
