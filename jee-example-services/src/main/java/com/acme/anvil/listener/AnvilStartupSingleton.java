@@ -25,7 +25,8 @@ public class AnvilStartupSingleton {
 	private static Logger LOG = Logger.getLogger(AnvilStartupSingleton.class);
 	private static final String MBEAN_NAME = "com.acme:Name=anvil,Type=com.acme.anvil.management.AnvilInvokeBean";
     
-    @Resource(lookup = "java:app/AppName") private String appName;
+    @Resource(lookup = "java:app/AppName") 
+    private String appName;
     
     
     @PostConstruct
@@ -42,7 +43,6 @@ public class AnvilStartupSingleton {
 	
     
 	private MBeanServer getMBeanServer() throws NamingException {
-		//MBeanServer server = (MBeanServer) new InitialContext().lookup("java:comp/jmx/runtime");
         MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 		return server;
 	}

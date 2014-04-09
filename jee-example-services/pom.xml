@@ -36,18 +36,6 @@
             <version>3.0</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>7.0</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
-            <groupId>javaee</groupId>
-            <artifactId>javaee-api</artifactId>
-            <version>5</version>
-            <scope>provided</scope>
-        </dependency>
         
         
         <dependency>
@@ -67,17 +55,18 @@
 
         <!-- WebLogic -->
         <dependency>
-            <groupId>weblogic</groupId>
-            <artifactId>wlfullclient</artifactId>
-            <version>10.3.6</version>
-            <scope>provided</scope>
+        	<groupId>javax</groupId>
+        	<artifactId>javaee-api</artifactId>
+        	<version>6.0</version>
+        	<scope>provided</scope>
         </dependency>
+        
         <dependency>
-            <groupId>weblogic</groupId>
-            <artifactId>ejbgen</artifactId>
-            <version>10.3.6</version>
-            <scope>provided</scope>
-        </dependency>
+		    <groupId>org.jboss.ejb3</groupId>
+		    <artifactId>jboss-ejb3-ext-api</artifactId>
+		    <version>2.0.0</version>
+		    <scope>provided</scope>
+		</dependency>
     </dependencies>
 
 </project>

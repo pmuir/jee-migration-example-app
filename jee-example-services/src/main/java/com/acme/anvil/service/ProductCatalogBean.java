@@ -1,12 +1,17 @@
 package com.acme.anvil.service;
 
 import java.rmi.RemoteException;
+
 import javax.ejb.EJBException;
-import javax.ejb.SessionBean;
+import javax.ejb.LocalBean;
 import javax.ejb.SessionContext;
+import javax.ejb.Stateless;
+
 import org.apache.log4j.Logger;
 
-public class ProductCatalogBean implements SessionBean {
+@Stateless
+@LocalBean
+public class ProductCatalogBean implements ProductCatalog {
 
 	private static final Logger LOG = Logger.getLogger(ProductCatalogBean.class);
 	

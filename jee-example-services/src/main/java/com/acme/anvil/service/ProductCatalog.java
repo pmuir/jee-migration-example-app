@@ -1,7 +1,8 @@
 package com.acme.anvil.service;
 
-import javax.ejb.EJBObject;
+import javax.ejb.Remote;
 
-public interface ProductCatalog extends EJBObject {
+@Remote
+public interface ProductCatalog {
 	public void populateCatalog();
 }
