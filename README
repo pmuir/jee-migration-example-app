@@ -1,5 +1,20 @@
 Provides an example application to be profiled by Windup.
 
+To Run in JBoss, make sure to add the following to the standalone-full.xml file to define the JMS Topic:
+<jms-destinations>
+	<jms-topic name="LogEventTopic">
+		<entry name="jboss/jms/topic/LogEventTopic"/>
+	</jms-topic>
+</jms-destinations>
+
+That should go within the <subsystem xmlns="urn:jboss:domain:messaging:1.4"> tag in the standalone configuration.
+
+Make sure to start the server with:
+standalone.sh -c standalone-full.xml or a similar deployment to include Messaging. 
+
+
+
+
 Technologies demonstrated: 
 * weblogic.common.T3ServicesDef
 * weblogic.common.T3StartupDef
