@@ -18,7 +18,6 @@
             <groupId>org.windup.example</groupId>
             <artifactId>jee-example-services</artifactId>
             <version>1.0.0</version>
-            <scope>provided</scope>
         </dependency>
         
         

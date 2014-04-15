@@ -3,7 +3,7 @@ package com.acme.anvil.service;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import javax.annotation.security.RunAs;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import com.acme.anvil.service.jms.LogEventPublisher;
 import com.acme.anvil.vo.Item;
 import com.acme.anvil.vo.LogEvent;
 
-//@RunAs(value="acme_user")
+
 @Stateless
 @LocalBean
 @TransactionTimeout(unit=TimeUnit.SECONDS, value=180)
