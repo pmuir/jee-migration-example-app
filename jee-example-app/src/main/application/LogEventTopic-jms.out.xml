@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><hq:configuration xmlns:hq="urn:hornetq">
+<hq:queue name="LogEventQueue">
+<entry name="jms/LogEventQueue"/>
+</hq:queue>
+</hq:configuration>

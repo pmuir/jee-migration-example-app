@@ -19,6 +19,8 @@ public class AnvilWebServlet extends HttpServlet {
 
 	private static final Logger LOG = Logger.getLogger(AnvilWebServlet.class);
 	
+	private static final String IP_ADDRESS = "192.168.0.1";
+	
 	@Inject
 	private ItemLookupBean lh;
 	
@@ -33,6 +35,7 @@ public class AnvilWebServlet extends HttpServlet {
 			out.println("<html>");
 			out.println("<body>");
 			out.println("<h1>ID: "+id+"</h1>");
+			out.println("<h1>IP: "+IP_ADDRESS+"</h1>");
 			out.println("</body>");
 			out.println("</html>");	
 		}
