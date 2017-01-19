@@ -1,5 +1,6 @@
 package com.acme.anvil.listener;
 
+import java.lang.management.ManagementFactory;
 import java.util.Properties;
 
 import javax.management.MBeanServer;
@@ -56,13 +57,7 @@ public class AnvilWebLifecycleListener extends ApplicationLifecycleListener {
 	}
 	
 	private MBeanServer getMBeanServer() throws NamingException {
-		Properties environment = new Properties();
-		environment.put(Context.INITIAL_CONTEXT_FACTORY, "weblogic.jndi.WLInitialContextFactory");
-		environment.put(Context.PROVIDER_URL, "t3://localhost:7001");
-		Context context = new InitialContext(environment);
-		
-		//get reference to the MBean Server...
-		MBeanServer server = (MBeanServer) context.lookup("java:comp/jmx/runtime");
+		MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 		return server;
 	}
 	

@@ -7,6 +7,13 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>jee-example-services</artifactId>
+	<repositories>
+		<repository>
+			<id>local-repo</id>
+			<name>jee-example-app-repository</name>
+			<url>file:${project.basedir}/../local-repo</url>
+		</repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.migration.support</groupId>

@@ -1,5 +1,6 @@
 package com.acme.anvil.listener;
 
+import java.lang.management.ManagementFactory;
 import java.util.Hashtable;
 
 import javax.management.MBeanServer;
@@ -50,15 +51,7 @@ public class AnvilWebStartupListener implements T3StartupDef {
 
 	
 	private MBeanServer getMBeanServer() throws NamingException {
-		//alternative way to create InitialContext reference.
-		Environment env = new Environment();
-		env.setProviderUrl("t3://weblogicServer:7001");
-		env.setSecurityPrincipal("fred");
-		env.setSecurityCredentials("seafood");
-		Context context = env.getContext();
-		
-		//get reference to the MBean Server...
-		MBeanServer server = (MBeanServer) context.lookup("java:comp/jmx/runtime");
+		MBeanServer server = ManagementFactory.getPlatformMBeanServer();
 		return server;
 	}
 	

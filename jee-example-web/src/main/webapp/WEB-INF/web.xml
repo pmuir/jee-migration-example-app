@@ -15,10 +15,6 @@
 	</filter-mapping>
 
 
-	<listener>
-		<listener-class></listener-class>
-	</listener>
-
 	<servlet>
 		<servlet-name>AnvilWebServlet</servlet-name>
 		<servlet-class>com.acme.anvil.AnvilWebServlet</servlet-class>

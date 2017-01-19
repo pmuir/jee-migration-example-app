@@ -3,7 +3,8 @@ package com.acme.anvil.service.jms;
 
 import java.text.SimpleDateFormat;
 
-import javax.ejb.MessageDrivenBean;
+import javax.ejb.ActivationConfigProperty;
+import javax.ejb.MessageDriven;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
@@ -13,17 +14,14 @@ import org.apache.log4j.Logger;
 
 import com.acme.anvil.vo.LogEvent;
 
-import weblogic.ejb.GenericMessageDrivenBean;
-import weblogic.ejbgen.MessageDriven;
 
 @MessageDriven(
-   ejbName = "LogEventSubscriber",
-   destinationJndiName = "jms/LogEventQueue",
-   destinationType = "javax.jms.Topic",
-   runAsPrincipalName = "anvil_user",
-   runAs = "anvil_user"
-)
-public class LogEventSubscriber extends GenericMessageDrivenBean implements MessageDrivenBean, MessageListener {
+		   name = "LogEventSubscriber",
+		   activationConfig = {
+	    @ActivationConfigProperty(propertyName = "destinationType", propertyValue = "javax.jms.Topic"),
+	    @ActivationConfigProperty(propertyName = "destination", propertyValue = "java:app/jms/LogEventQueue")
+	})
+public class LogEventSubscriber implements MessageListener {
 
 	/**
 	 * 

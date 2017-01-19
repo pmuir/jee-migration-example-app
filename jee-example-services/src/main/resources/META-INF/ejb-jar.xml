@@ -51,6 +51,10 @@
 					<activation-config-property-name>destinationType</activation-config-property-name>
 					<activation-config-property-value>javax.jms.Topic</activation-config-property-value>
 				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>java:app/jms/LogEventQueue</activation-config-property-value>
+				</activation-config-property>
 			</activation-config>
 			<security-identity>
 				<run-as>

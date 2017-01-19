@@ -29,7 +29,7 @@ public class AnvilWebServlet extends HttpServlet {
 		ItemLookupLocal local;
 		try {
 			ic = new InitialContext();
-			lh  = (ItemLookupLocalHome)ic.lookup("ejb/ItemLookupLocal");
+			lh  = (ItemLookupLocalHome)ic.lookup("java:app/jee-example-services/ItemLookupBean/Local");
 			local = lh.create();
 			
 			String itemId = req.getParameter("id");

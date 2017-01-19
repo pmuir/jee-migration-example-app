@@ -26,8 +26,8 @@ import com.acme.anvil.vo.LogEvent;
 public class LogEventPublisher {
 
 	private static final Logger LOG = Logger.getLogger(LogEventPublisher.class);
-	private static final String QUEUE_JNDI_NAME = "jms/LogEventQueue";
-	private static final String QUEUE_FACTORY_JNDI_NAME = "jms/LogEventQueue";
+	private static final String QUEUE_JNDI_NAME = "java:app/jms/LogEventQueue";
+	private static final String QUEUE_FACTORY_JNDI_NAME = "java:app/jms/LogEventQueue";
 
 	public static void publishLogEvent(LogEvent log) {
 		//get a reference to the transaction manager to suspend the current transaction incase of exception.
@@ -56,11 +56,7 @@ public class LogEventPublisher {
 	}
 
 	private static Context getContext() throws NamingException {
-		Properties environment = new Properties();
-		environment.put(Context.INITIAL_CONTEXT_FACTORY,
-				"weblogic.jndi.WLInitialContextFactory");
-		environment.put(Context.PROVIDER_URL, "t3://localhost:7001");
-		Context context = new InitialContext(environment);
+		Context context = new InitialContext();
 
 		return context;
 	}
